@@ -87,7 +87,7 @@ const signup = async (req, res) => {
     });
   }
       
-  const validRoles = ['influencer', 'admin'];
+  const validRoles = ['influencer', 'brand'];
     if (!validRoles.includes(role)) {
       return res.status(400).json({
         success: false,
@@ -290,7 +290,7 @@ const confirmResetPassword = async (req, res) => {
   }
 };
 
-// @desc    Get current logged in user (Optional - for testing)
+// @desc    Get current logged in user
 // @route   GET /api/auth/me
 // @access  Private
 const getMe = async (req, res) => {

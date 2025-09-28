@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: {
       values: ['influencer', 'brand', 'admin'],
-      message: 'Role must be either influencer, brand, or admin'
+      message: 'Role must be either influencer or brand'
     },
     required: [true, 'Please specify a role']
   },

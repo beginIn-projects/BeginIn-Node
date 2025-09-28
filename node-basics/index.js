@@ -16,6 +16,9 @@ const app = express();
 // Body parser middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
+app.use('/brand', require('./routes/brand'));
+app.use("/admin", require("./routes/adminAuth"));
+
 
 // Cookie parser
 app.use(cookieParser());
