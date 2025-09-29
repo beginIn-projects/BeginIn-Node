@@ -1,12 +1,10 @@
 const jwt = require("jsonwebtoken");
 const AdminUser = require("../models/AdminUser");
 
-// helper to generate JWT token
 const generateToken = (id, role = "admin") => {
   return jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
 
-// POST /admin/signup
 exports.adminSignup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -39,7 +37,6 @@ exports.adminSignup = async (req, res) => {
   }
 };
 
-// POST /admin/login
 exports.adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;

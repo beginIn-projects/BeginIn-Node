@@ -1,9 +1,7 @@
-// controllers/brandController.js
 const mongoose = require('mongoose');
 const Brand = require('../models/Brand');
-const User = require('../models/user'); // adjust path/casing if needed
+const User = require('../models/user'); 
 
-// helper to get authenticated user id (flexible for different token shapes)
 const getAuthUserId = (req) => {
   return (
     (req.user && (req.user.id || req.user._id || req.user.userId)) ||
@@ -11,15 +9,13 @@ const getAuthUserId = (req) => {
     null
   );
 };
-
 // Optional role check helper
 const ensureRole = (req, role) => {
   if (!req.user) return false;
   if (req.user.role) return req.user.role === role;
-  return true; // if your token doesn't contain role, skip enforcement (or you can fetch User)
+  return true; 
 };
 
-// POST /brand/onboard
 exports.onboardBrand = async (req, res) => {
   try {
     const authUserId = getAuthUserId(req);
@@ -54,7 +50,6 @@ exports.onboardBrand = async (req, res) => {
   }
 };
 
-// GET /brand/profile/:id  (accepts brand _id or userId)
 exports.getBrandProfile = async (req, res) => {
   try {
     const id = req.params.id;
@@ -77,7 +72,7 @@ exports.getBrandProfile = async (req, res) => {
   }
 };
 
-// PUT /brand/update  (update authenticated user's brand profile)
+// PUT /brand/update 
 exports.updateBrand = async (req, res) => {
   try {
     const authUserId = getAuthUserId(req);

@@ -16,9 +16,6 @@ const app = express();
 // Body parser middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
-app.use('/brand', require('./routes/brand'));
-app.use("/admin", require("./routes/adminAuth"));
-
 
 // Cookie parser
 app.use(cookieParser());
@@ -31,7 +28,6 @@ app.use(cors({
 
 // Sanitize data
 //app.use(mongoSanitize());
-
 // Set security headers
 app.use(helmet());
 // Prevent XSS attacks
@@ -44,7 +40,11 @@ const limiter = rateLimit({
 app.use(limiter);
 // Authentication routes ONLY
 app.use('/auth', require('./routes/auth'));
+app.use("/admin", require("./routes/adminAuth"));           // → /admin/login
+app.use("/admin", require("./routes/adminInfluencer")); 
 app.use('/influencer', require('./routes/influencer'));
+app.use('/brand', require('./routes/brand'));
+
 // Health check route
 app.get('/health', (req, res) => {
   res.status(200).json({

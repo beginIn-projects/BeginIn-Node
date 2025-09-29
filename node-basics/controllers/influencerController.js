@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Influencer = require('../models/influencer');
-const User = require('../models/user'); // adjust path/casing if your file is named differently
+const User = require('../models/user'); 
 
-// helper: flexible extraction of authenticated user id
 const getAuthUserId = (req) => {
   return (
     (req.user && (req.user.id || req.user._id || req.user.userId)) ||
@@ -10,7 +9,6 @@ const getAuthUserId = (req) => {
     null
   );
 };
-
 // POST /influencer/onboard
 exports.onboardInfluencer = async (req, res) => {
   try {
@@ -56,7 +54,6 @@ exports.onboardInfluencer = async (req, res) => {
 };
 
 // GET /influencer/profile/:id
-// Accepts either influencer _id OR userId
 exports.getInfluencerProfile = async (req, res) => {
   try {
     const id = req.params.id;

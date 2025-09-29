@@ -22,8 +22,8 @@ const adminUserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      default: "admin",   // always admin
-      immutable: true     // cannot be changed
+      default: "admin",   
+      immutable: true     
     }
   },
   { timestamps: true }

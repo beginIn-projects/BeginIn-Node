@@ -6,14 +6,12 @@ const {
   sendPasswordResetEmail 
 } = require('../utils/sendEmail');
 
-// Generate JWT Token
 const signToken = (id,role) => {
   return jwt.sign({ id, role }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE || '30d'
   });
 };
 
-// token response
 const sendTokenResponse = (user, statusCode, res) => {
   const token = signToken(user._id, user.role);
   const options = {
@@ -43,10 +41,6 @@ const sendTokenResponse = (user, statusCode, res) => {
       }
     });
 };
-
-// @desc    Register user
-// @route   POST /api/auth/signup
-// @access  Public
 const signup = async (req, res) => {
   try {
     const { name, email, password,confirmPassword, role} = req.body;
@@ -72,7 +66,6 @@ const signup = async (req, res) => {
       });
     }
 
-    // Check if passwords match
     if (password !== confirmPassword) {
       return res.status(400).json({
         success: false,
