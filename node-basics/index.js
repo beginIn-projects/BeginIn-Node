@@ -44,6 +44,8 @@ app.use("/admin", require("./routes/adminAuth"));           // → /admin/login
 app.use("/admin", require("./routes/adminInfluencer")); 
 app.use('/influencer', require('./routes/influencer'));
 app.use('/brand', require('./routes/brand'));
+app.use("/campaigns", require("./routes/campaign"));
+
 
 // Health check route
 app.get('/health', (req, res) => {

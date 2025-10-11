@@ -39,3 +39,25 @@ exports.updateInfluencerStatus = async (req, res) => {
     return res.status(500).json({ success: false, message: "Server error" });
   }
 };
+
+// DELETE influencer profile
+exports.deleteInfluencer = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const influencer = await Influencer.findByIdAndDelete(id);
+
+    if (!influencer) {
+      return res.status(404).json({ success: false, message: "Influencer not found" });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Influencer profile deleted successfully"
+    });
+  } catch (err) {
+    console.error("deleteInfluencer error:", err);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
